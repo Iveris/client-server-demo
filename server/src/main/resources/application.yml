@@ -1,0 +1,19 @@
+---
+spring:
+  application:
+    name: server
+  jpa:
+    show-sql: true
+    defer-datasource-initialization: false
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: "${DATASOURCE_URL:jdbc:mysql://localhost:3306/kitties}"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    url: "${DATASOURCE_URL:jdbc:mysql://localhost:3306/kitties}"
+    locations: classpath:db/migration
+
+server.port: 8080
+
+...

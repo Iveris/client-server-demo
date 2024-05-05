@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: kitties
+      MYSQL_USER: ${DB_USER} 
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT}
+    ports:
+      - 3306:3306 
+      
