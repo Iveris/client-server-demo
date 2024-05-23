@@ -3,6 +3,7 @@ package com.warneriveris.server.service;
 import com.warneriveris.server.data.dao.KittyRepository;
 import com.warneriveris.server.data.dto.KittyDto;
 import com.warneriveris.server.data.entity.Kitty;
+import com.warneriveris.server.data.validation.ObjectValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,15 @@ import java.util.Collections;
 @Service
 public class DataService {
 
-    private KittyRepository repo;
+    private final KittyRepository repo;
+    private final ObjectValidator<Kitty> kittyValidator;
+    private final ObjectValidator<KittyDto> kittyDtoValidator;
 
     @Autowired
-    public DataService(KittyRepository repo){
-        this.repo = repo;
+    public DataService(KittyRepository kittyRepository, ObjectValidator<Kitty> kittyValidator, ObjectValidator<KittyDto> dtoValidator) {
+        this.repo = kittyRepository;
+        this.kittyValidator = kittyValidator;
+        this.kittyDtoValidator = dtoValidator;
     }
 
     public Collection<KittyDto> findKittyByName(String name) {
@@ -49,6 +54,7 @@ public class DataService {
     }
 
     private KittyDto convertEntityToDto(Kitty kitty){
+        kittyValidator.validate(kitty);
         return new KittyDto(kitty.getName(),
                 kitty.getOwner(),
                 kitty.getEyeColor(),
@@ -58,7 +64,8 @@ public class DataService {
     }
 
    private Kitty convertDtoToEntity(KittyDto kittyDto){
-        return Kitty.builder()
+        kittyDtoValidator.validate(kittyDto);
+        var kitty = Kitty.builder()
                 .name(kittyDto.name())
                 .owner(kittyDto.owner())
                 .eyeColor(kittyDto.eyeColor())
@@ -66,6 +73,7 @@ public class DataService {
                 .intelligence(kittyDto.intelligence())
                 .description(kittyDto.description())
                 .build();
+       return kitty;
    }
 
 }
