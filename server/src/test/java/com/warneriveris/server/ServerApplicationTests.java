@@ -1,6 +1,6 @@
 package com.warneriveris.server;
 
-import com.warneriveris.server.api.ServerApi;
+import com.warneriveris.server.controller.KittyController;
 import com.warneriveris.server.data.dao.KittyRepository;
 import com.warneriveris.server.service.DataService;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ class ServerApplicationTests {
 	void contextLoads(ApplicationContext context) {
 		assertNotNull(context.getBean(KittyRepository.class));
 		assertNotNull(context.getBean(DataService.class));
-		assertNotNull(context.getBean(ServerApi.class));
+		assertNotNull(context.getBean(KittyController.class));
 	}
 
 }

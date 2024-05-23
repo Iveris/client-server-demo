@@ -1,6 +1,8 @@
 package com.warneriveris.server.data.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,15 +15,15 @@ import java.util.Objects;
 @Data
 public class Kitty {
 
-    public Kitty(long id, String name, String owner, String eyeColor, Double weight, Integer intelligence, String description) {
-        this.id = id;
-        this.name = name;
-        this.owner = owner;
-        this.eyeColor = eyeColor;
-        this.weight = weight;
-        this.intelligence = intelligence;
-        this.description = description;
-    }
+//    public Kitty(long id, String name, String owner, String eyeColor, Double weight, Integer intelligence, String description) {
+//        this.id = id;
+//        this.name = name;
+//        this.owner = owner;
+//        this.eyeColor = eyeColor;
+//        this.weight = weight;
+//        this.intelligence = intelligence;
+//        this.description = description;
+//    }
 
     @Builder
     public Kitty(String name, String owner, String eyeColor, Double weight, Integer intelligence, String description) {
@@ -37,11 +39,15 @@ public class Kitty {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
+    @NotNull(message = "Kitty must have a name")
+    @NotEmpty(message = "Kitty must have a name")
     private String name;
     private String owner;
     @Column(name = "eye-color")
     private String eyeColor;
+    @NotNull(message = "Kitty must have a weight")
     private Double weight;
+    @NotNull(message = "Kitty intelligence rating required")
     private Integer intelligence;
     private String description;
 

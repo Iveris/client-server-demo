@@ -1,4 +1,4 @@
-package com.warneriveris.server.api;
+package com.warneriveris.server.controller;
 
 import com.warneriveris.server.data.dto.KittyDto;
 import com.warneriveris.server.service.DataService;
@@ -9,12 +9,12 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("/kitties")
-public class ServerApi {
+public class KittyController {
 
     private final DataService dataService;
 
     @Autowired
-    public ServerApi(DataService dataService) {
+    public KittyController(DataService dataService) {
         this.dataService = dataService;
     }
 
@@ -36,7 +36,6 @@ public class ServerApi {
     }
 
     @PostMapping(path = "/hello-kitty")
-//    @ResponseBody
     public KittyDto helloKitty(@RequestBody KittyDto kitty){
         return dataService.saveKitty(kitty);
     }
@@ -46,8 +45,8 @@ public class ServerApi {
         return "hello";
     }
 
-//    @PostMapping
-//    public KittyDto deleteKitty(KittyDto kitty) {
-//        return null;
-//    }
+    @PostMapping(path = "/goodbye-kitty")
+    public String deleteKitty(@RequestBody KittyDto kitty) {
+        return dataService.removeKitty(kitty);
+    }
 }
