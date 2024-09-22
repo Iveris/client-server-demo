@@ -4,10 +4,12 @@
    1. make sure Java 21 is installed and in your PATH 
       1. [SDKMAN](https://sdkman.io/) is a great tool for managing multiple Java versions
 
-1. Set Environment Variables:
-   - DB_USER
-   - DB_PASSWORD
-   - DB_ROOT
+1. Create application-secrets.yml and application-docker-secrets.yml in the src/main/resources folder using the example files
+
+1. Set the DB_USER, DB_PASSWORD, and DB_ROOT Environment Variables by sourcing the export_db_config.sh script
+   ```bash
+      . ./export_db_config.sh
+   ```
 
 1. Remove any images of server or db from Docker
 
@@ -27,14 +29,9 @@
       docker compose -f mysql-compose.yaml down
       ``` 
 
-2. Build the server app docker image
-      ```bash
-      docker build -t serverapp:0.0.1 .
-      ```
-
 3. Start Main Docker Compose Project
     ```bash
-    docker compose up -d
+    docker compose up --build -d
     ```
 4. Call API endpoints
    - http://localhost:8080/kitties/hello
@@ -55,5 +52,5 @@
       - get request which returns information about Fluffy from the database
 5. Shutdown Docker
     ```bash
-    docker compose down
+    docker compose down --rmi local
     ```
