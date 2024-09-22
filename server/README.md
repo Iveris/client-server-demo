@@ -4,7 +4,9 @@
    1. make sure Java 21 is installed and in your PATH 
       1. [SDKMAN](https://sdkman.io/) is a great tool for managing multiple Java versions
 
-1. Set Environment Variables:
+1. Create application-secrets.yml and application-docker-secrets.yml in the src/main/resources folder using the example files
+
+1. Set Environment Variables using the export_db_config.sh script:
    - DB_USER
    - DB_PASSWORD
    - DB_ROOT
