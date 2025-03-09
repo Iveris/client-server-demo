@@ -1,4 +1,4 @@
-package com.warneriveris.server.controller;
+package com.warneriveris.server.api.controller;
 
 import com.warneriveris.server.data.dto.KittyDto;
 import com.warneriveris.server.service.DataService;

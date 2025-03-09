@@ -1,6 +1,6 @@
 package com.warneriveris.server;
 
-import com.warneriveris.server.controller.KittyController;
+import com.warneriveris.server.api.controller.KittyController;
 import com.warneriveris.server.data.dao.KittyRepository;
 import com.warneriveris.server.service.DataService;
 import org.junit.jupiter.api.Test;
@@ -10,8 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest
-@ActiveProfiles(value = "secrets")
+@SpringBootTest(properties = {"spring.profiles.active=secrets"})
 class ServerApplicationTests {
 
 	@Test

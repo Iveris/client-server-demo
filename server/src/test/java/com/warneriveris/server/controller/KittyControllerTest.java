@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import com.warneriveris.server.TestConfig;
+import com.warneriveris.server.api.controller.KittyController;
 import com.warneriveris.server.data.dao.KittyRepository;
 import com.warneriveris.server.data.dto.KittyDto;
 import com.warneriveris.server.data.entity.Kitty;
@@ -18,7 +19,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

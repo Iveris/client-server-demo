@@ -11,8 +11,7 @@ import java.util.List;
 import static com.warneriveris.server.TestConstants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-@ActiveProfiles(value = "secrets")
+@SpringBootTest(properties = {"spring.profiles.active=secrets"})
 class DataServiceIT {
 
     @Autowired
